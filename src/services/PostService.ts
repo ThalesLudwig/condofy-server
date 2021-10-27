@@ -1,14 +1,23 @@
-import { PostSchema } from "../database/Schemas/PostSchema";
-import { IPost } from "../interfaces/Post";
+import { database } from "../database";
+import { IPost } from "../interfaces/IPost";
 
 export class PostService {
-  async fetchAllPosts() {
-    const posts = await PostSchema.find().sort("-createdAt");
+  async fetchAll() {
+    const posts = await database.post.findMany({
+      include: {
+        user: true,
+      },
+    });
     return posts;
   }
 
-  async createPost(post: IPost) {
-    const newPost = await PostSchema.create(post);
-    return newPost;
+  async create(data: IPost) {
+    const user = await database.post.create({
+      data,
+      include: {
+        user: true,
+      },
+    });
+    return user;
   }
 }

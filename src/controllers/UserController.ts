@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { PostService } from "../services/PostService";
+import { UserService } from "../services/UserService";
 
-const service = new PostService();
+const service = new UserService();
 
-export class PostController {
-  async getAllPosts(request: Request, response: Response) {
+export class UserController {
+  async getAllUsers(request: Request, response: Response) {
     try {
       const result = await service.fetchAll();
       return response.json(result);
@@ -15,10 +15,10 @@ export class PostController {
     }
   }
 
-  async createPost(request: Request, response: Response) {
-    const post = request.body;
+  async createUser(request: Request, response: Response) {
+    const user = request.body;
     try {
-      const result = await service.create(post);
+      const result = await service.create(user);
       return response.json(result);
     } catch (error) {
       return response.json({

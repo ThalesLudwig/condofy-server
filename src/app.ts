@@ -4,7 +4,6 @@ import router from "./router";
 import http from "http";
 import cors from "cors";
 import { Server } from "socket.io";
-import { connectToDatabase } from "./database";
 
 const app = express();
 
@@ -16,8 +15,6 @@ const io = new Server(serverHttp, {
     origin: "*",
   },
 });
-
-connectToDatabase();
 
 app.use(express.json());
 app.use(router);
