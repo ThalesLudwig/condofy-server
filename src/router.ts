@@ -11,6 +11,8 @@ const condominiumController = new CondominiumController();
 
 router.get(routes.GET_ALL_POSTS, postController.getAllPosts);
 router.post(routes.CREATE_POST, postController.createPost);
+router.put(routes.UPDATE_POST, postController.updatePost);
+router.delete(routes.DELETE_POST, postController.deletePost);
 
 router.get(routes.GET_ALL_USERS, userController.getAllUsers);
 router.post(routes.CREATE_USER, userController.createUser);
