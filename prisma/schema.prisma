@@ -27,6 +27,7 @@ model User {
   condominium    Condominium @relation(fields: [condominium_id], references: [id])
 
   posts Post[]
+  likes Like[]
   @@map("users")
 }
 
@@ -38,5 +39,18 @@ model Post {
   user_id    String
   user       User     @relation(fields: [user_id], references: [id])
 
+  likes Like[]
   @@map("posts")
+}
+
+model Like {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  post_id    String
+  post       Post     @relation(fields: [post_id], references: [id])
+  user_id    String
+  user       User     @relation(fields: [user_id], references: [id])
+
+  @@map("likes")
 }

@@ -15,13 +15,13 @@ export class PostService {
   }
 
   async create(data: IPost) {
-    const user = await database.post.create({
+    const post = await database.post.create({
       data,
       include: {
         user: true,
       },
     });
-    return user;
+    return post;
   }
 
   async update(data: IPost, postId: string) {
