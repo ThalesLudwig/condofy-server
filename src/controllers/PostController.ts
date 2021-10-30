@@ -1,19 +1,22 @@
 import { Request, Response } from "express";
+import { IFetchPostRequest } from "../interfaces/IFetchPostRequest";
 import { PostService } from "../services/PostService";
 
 const service = new PostService();
 
 export class PostController {
   async getAllPosts(request: Request, response: Response) {
-    const { userId } = request.query;
-
+    const { userId, page, size } = request.query as any;
+    const data: IFetchPostRequest = {
+      page,
+      userId,
+      size,
+    };
     try {
-      const result = await service.fetchAll(userId as string);
+      const result = await service.fetchAll(data);
       return response.json(result);
     } catch (error) {
-      return response.json({
-        error,
-      });
+      return response.json({ error });
     }
   }
 

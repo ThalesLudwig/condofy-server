@@ -1,8 +1,15 @@
+import { DEFAULT_PAGE_SIZE } from "../constants/posts";
 import { database } from "../database";
+import { IFetchPostRequest } from "../interfaces/IFetchPostRequest";
 import { IPost } from "../interfaces/IPost";
 
 export class PostService {
-  async fetchAll(userId: string) {
+  getRecordsToSkip(page?: string, size?: string): number {
+    return page && size ? (parseInt(page) - 1) * parseInt(size) : 0;
+  }
+
+  async fetchAll(data: IFetchPostRequest) {
+    const { userId, page, size } = data;
     const posts = await database.post.findMany({
       where: {
         user_id: userId,
@@ -10,6 +17,11 @@ export class PostService {
       include: {
         user: true,
       },
+      orderBy: {
+        created_at: "desc",
+      },
+      take: size ? parseInt(size) : DEFAULT_PAGE_SIZE,
+      skip: this.getRecordsToSkip(page, size),
     });
     return posts;
   }
