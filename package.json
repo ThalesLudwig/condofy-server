@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "build": "prisma generate",
     "start": "ts-node-dev --exit-child src/server.ts",
     "postinstall": "tsc"
   },
