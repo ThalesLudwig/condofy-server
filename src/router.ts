@@ -11,6 +11,8 @@ const userController = new UserController();
 const condominiumController = new CondominiumController();
 const likeController = new LikeController();
 
+router.get(routes.ROOT, (req, res) => res.json("Condofy Server"));
+
 router.get(routes.GET_POSTS, postController.getAllPosts);
 router.post(routes.CREATE_POST, postController.createPost);
 router.put(routes.UPDATE_POST, postController.updatePost);
