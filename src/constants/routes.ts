@@ -1,6 +1,7 @@
 export const ROOT = "/";
 
 export const GET_POSTS = "/posts";
+export const GET_POST = "/posts/:id";
 export const CREATE_POST = "/posts";
 export const UPDATE_POST = "/posts/:id";
 export const DELETE_POST = "/posts/:id";

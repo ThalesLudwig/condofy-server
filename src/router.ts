@@ -14,6 +14,7 @@ const likeController = new LikeController();
 router.get(routes.ROOT, (req, res) => res.json("Condofy Server"));
 
 router.get(routes.GET_POSTS, postController.getAllPosts);
+router.get(routes.GET_POST, postController.getPostById);
 router.post(routes.CREATE_POST, postController.createPost);
 router.put(routes.UPDATE_POST, postController.updatePost);
 router.delete(routes.DELETE_POST, postController.deletePost);

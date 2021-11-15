@@ -26,6 +26,18 @@ export class PostService {
     return posts;
   }
 
+  async fetchById(postId: string) {
+    const post = await database.post.findUnique({
+      where: {
+        id: postId,
+      },
+      include: {
+        user: true,
+      },
+    });
+    return post;
+  }
+
   async create(data: IPost) {
     const post = await database.post.create({
       data,

@@ -20,6 +20,18 @@ export class PostController {
     }
   }
 
+  async getPostById(request: Request, response: Response) {
+    const { id } = request.params;
+    try {
+      const result = await service.fetchById(id);
+      return response.json(result);
+    } catch (error) {
+      return response.json({
+        error,
+      });
+    }
+  }
+
   async createPost(request: Request, response: Response) {
     const post = request.body;
     try {
